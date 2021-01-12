@@ -29,10 +29,6 @@ public class DefaultCountingOutRhymer {
         return NUMBERS[total];
     }
 
-    public int[] getNumbers() {
-        return NUMBERS;
-    }
-
     public int getTotal() {
         return total;
     }
