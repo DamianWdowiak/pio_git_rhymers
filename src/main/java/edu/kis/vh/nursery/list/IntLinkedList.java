@@ -33,7 +33,7 @@ public class IntLinkedList {
      * @return false
      */
     public boolean isFull() {
-        return false;
+        return false; // TODO: 15/01/2021 implement check if list is full
     }
 
     /**
