@@ -6,7 +6,6 @@ package edu.kis.vh.nursery.list;
 public class IntLinkedList {
 
     private Node last;
-    private int i;
     public static final int IF_EMPTY = -1;
 
     /**
@@ -33,7 +32,7 @@ public class IntLinkedList {
      * @return false
      */
     public boolean isFull() {
-        return false; // TODO: 15/01/2021 implement check if list is full
+        return false;
     }
 
     /**
