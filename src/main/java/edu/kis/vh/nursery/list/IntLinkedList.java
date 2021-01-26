@@ -1,40 +1,88 @@
 package edu.kis.vh.nursery.list;
 
+/**
+ * Linked List that contains integers
+ */
 public class IntLinkedList {
 
-	Node last;
-	int i;
+    private Node last;
+    public static final int IF_EMPTY = -1;
 
-	public void push(int i) {
-		if (last == null)
-			last = new Node(i);
-		else {
-			last.next = new Node(i);
-			last.next.prev = last;
-			last = last.next;
-		}
-	}
+    /**
+     * @param i new element to add
+     */
+    public void push(int i) {
+        if (last == null)
+            last = new Node(i);
+        else {
+            last.setNext(new Node(i));
+            last.getNext().setPrev(last);
+            last = last.getNext();
+        }
+    }
 
-	public boolean isEmpty() {
-		return last == null;
-	}
+    /**
+     * @return true if list is empty
+     */
+    public boolean isEmpty() {
+        return last == null;
+    }
 
-	public boolean isFull() {
-		return false;
-	}
+    /**
+     * @return false
+     */
+    public boolean isFull() {
+        return false;
+    }
 
-	public int top() {
-		if (isEmpty())
-			return -1;
-		return last.value;
-	}
+    /**
+     * @return last value without deleting
+     */
+    public int top() {
+        if (isEmpty())
+            return IF_EMPTY;
+        return last.getValue();
+    }
 
-	public int pop() {
-		if (isEmpty())
-			return -1;
-		int ret = last.value;
-		last = last.prev;
-		return ret;
-	}
+    /**
+     * @return last value and delete it
+     */
+    public int pop() {
+        if (isEmpty())
+            return IF_EMPTY;
+        int ret = last.getValue();
+        last = last.getPrev();
+        return ret;
+    }
 
+    private static class Node {
+
+        private final int VALUE;
+        private Node prev;
+        private Node next;
+
+        public Node(int i) {
+            this.VALUE = i;
+        }
+
+        public int getValue() {
+            return VALUE;
+        }
+
+        public Node getPrev() {
+            return prev;
+        }
+
+        public void setPrev(Node prev) {
+            this.prev = prev;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+    }
 }
