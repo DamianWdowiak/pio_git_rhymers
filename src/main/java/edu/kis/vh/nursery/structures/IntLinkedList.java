@@ -1,18 +1,19 @@
-package edu.kis.vh.nursery.list;
+package edu.kis.vh.nursery.structures;
 
 /**
  * Linked List that contains integers
  */
-public class IntLinkedList {
+public class IntLinkedList implements IntStructure {
 
+    public static final Node EMPTY_LIST_INDICATOR = null;
     private Node last;
-    public static final int IF_EMPTY = -1;
 
     /**
      * @param i new element to add
      */
+    @Override
     public void push(int i) {
-        if (last == null)
+        if (last == EMPTY_LIST_INDICATOR)
             last = new Node(i);
         else {
             last.setNext(new Node(i));
@@ -24,32 +25,51 @@ public class IntLinkedList {
     /**
      * @return true if list is empty
      */
+    @Override
     public boolean isEmpty() {
-        return last == null;
+        return last == EMPTY_LIST_INDICATOR;
     }
 
     /**
      * @return false
      */
+    @Override
     public boolean isFull() {
         return false;
+    }
+
+    @Override
+    public int getTotal() {
+        if (isEmpty())
+            return DEFAULT_VALUE;
+
+        Node iterator = last;
+        int total = 0;
+        while(iterator != null){
+            ++total;
+            iterator = iterator.getNext();
+        }
+
+        return total;
     }
 
     /**
      * @return last value without deleting
      */
-    public int top() {
+    @Override
+    public int peek() {
         if (isEmpty())
-            return IF_EMPTY;
+            return DEFAULT_VALUE;
         return last.getValue();
     }
 
     /**
      * @return last value and delete it
      */
+    @Override
     public int pop() {
         if (isEmpty())
-            return IF_EMPTY;
+            return DEFAULT_VALUE;
         int ret = last.getValue();
         last = last.getPrev();
         return ret;

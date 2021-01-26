@@ -1,39 +1,40 @@
 package edu.kis.vh.nursery;
 
-import edu.kis.vh.nursery.stack.IntArrayStack;
+import edu.kis.vh.nursery.structures.IntArrayStack;
+import edu.kis.vh.nursery.structures.IntStructure;
 
 public class DefaultCountingOutRhymer {
-    private final IntArrayStack intArrayStack;
+    private final IntStructure intStructure;
 
-    public DefaultCountingOutRhymer(IntArrayStack intArrayStack) {
-        this.intArrayStack = intArrayStack;
+    public DefaultCountingOutRhymer(IntStructure intStructure) {
+        this.intStructure = intStructure;
     }
 
     public DefaultCountingOutRhymer() {
-        this.intArrayStack = new IntArrayStack();
+        this.intStructure = new IntArrayStack();
     }
 
     public void countIn(int in) {
-        intArrayStack.push(in);
+        intStructure.push(in);
     }
 
     protected int peekaboo() {
-        return intArrayStack.peek();
+        return intStructure.peek();
     }
 
     public boolean callCheck() {
-        return intArrayStack.isEmpty();
+        return intStructure.isEmpty();
     }
 
     public boolean isFull() {
-        return intArrayStack.isFull();
+        return intStructure.isFull();
     }
 
     public int getTotal() {
-        return intArrayStack.getTotal();
+        return intStructure.getTotal();
     }
 
     public int countOut() {
-        return intArrayStack.pop();
+        return intStructure.pop();
     }
 }
