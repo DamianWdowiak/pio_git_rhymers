@@ -1,42 +1,40 @@
 package edu.kis.vh.nursery;
 
+import edu.kis.vh.nursery.structures.IntArrayStack;
+import edu.kis.vh.nursery.structures.IntStructure;
+
 public class DefaultCountingOutRhymer {
+    private final IntStructure intStructure;
 
-    public static final int MAX_SIZE = 12;
-    public static final int DEFAULT_VALUE = -1;
-    public static final int EMPTY_RHYMER_INDICATOR = -1;
+    public DefaultCountingOutRhymer(IntStructure intStructure) {
+        this.intStructure = intStructure;
+    }
 
-    private final int[] numbers = new int[MAX_SIZE];
-
-    public int total = EMPTY_RHYMER_INDICATOR;
+    public DefaultCountingOutRhymer() {
+        this.intStructure = new IntArrayStack();
+    }
 
     public void countIn(int in) {
-        if (!isFull())
-            numbers[++total] = in;
-    }
-
-    public boolean callCheck() {
-        return total == EMPTY_RHYMER_INDICATOR;
-    }
-
-    public boolean isFull() {
-        return total == MAX_SIZE - 1;
+        intStructure.push(in);
     }
 
     protected int peekaboo() {
-        if (callCheck())
-            return DEFAULT_VALUE;
-        return numbers[total];
+        return intStructure.peek();
+    }
+
+    public boolean callCheck() {
+        return intStructure.isEmpty();
+    }
+
+    public boolean isFull() {
+        return intStructure.isFull();
     }
 
     public int getTotal() {
-        return total;
+        return intStructure.getTotal();
     }
 
     public int countOut() {
-        if (callCheck())
-            return DEFAULT_VALUE;
-        return numbers[total--];
+        return intStructure.pop();
     }
-
 }
